@@ -5,7 +5,7 @@ import type {
   InvitationOrderStatus,
 } from '~/features/invitation/types/invitation.types'
 
-const API_BASE_URL = 'http://localhost:4000/api/invitations'
+const API_BASE_URL = 'https://daawa-backend.onrender.com/api/invitations'
 const LOCAL_ORDERS_KEY = 'daawa-orders-backup-v1'
 
 const readLocalOrders = (): InvitationItem[] => {
