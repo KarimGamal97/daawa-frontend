@@ -4,19 +4,17 @@
     class="sticky top-0 z-50 bg-[#F9F6F0]/90 dark:bg-[#140A0E]/90 backdrop-blur-md border-b border-[#C5A059]/15 transition-colors duration-300"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
-      <!-- Logo -->
+      <!-- Logo (Image Only) -->
       <NuxtLink
         to="/"
         @click="handleLogoClick"
-        class="flex items-center gap-2 sm:gap-2.5 shrink-0 group"
+        class="flex items-center shrink-0 group"
       >
-        <span class="text-xl sm:text-2xl font-bold tracking-wider text-[#4A1525] dark:text-[#F9F6F0]">
-          {{ $t('brand.en') }}
-        </span>
-        <span class="h-4 sm:h-5 w-[1px] bg-[#C5A059]/40"></span>
-        <span class="text-[#C5A059] text-base sm:text-lg font-bold">
-          {{ $t('brand.ar') }}
-        </span>
+        <img
+          src="/images/main-logo.jpg"
+          alt="DAAWA | دعوة"
+          class="h-10 sm:h-12 w-auto rounded-xl object-contain hover:scale-[1.02] transition-transform"
+        />
       </NuxtLink>
 
       <!-- Desktop Navigation (lg and up so it never crowds) -->

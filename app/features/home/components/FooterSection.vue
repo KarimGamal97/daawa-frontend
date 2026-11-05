@@ -6,10 +6,12 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 pb-10">
       <!-- Column 1: Brand + Description + 4 Social Icons (Facebook, Instagram, WhatsApp, TikTok) -->
       <div class="md:col-span-5 space-y-4">
-        <NuxtLink to="/" class="inline-flex items-center gap-2.5">
-          <span class="text-2xl font-bold tracking-wider text-[#4A1525] dark:text-[#F9F6F0]">{{ $t('brand.en') }}</span>
-          <span class="h-5 w-[1px] bg-[#C5A059]/40"></span>
-          <span class="text-[#C5A059] text-lg font-bold">{{ $t('brand.ar') }}</span>
+        <NuxtLink to="/" class="inline-flex items-center">
+          <img
+            src="/images/main-logo.jpg"
+            alt="DAAWA | دعوة"
+            class="h-10 sm:h-12 w-auto rounded-xl object-contain shadow-sm"
+          />
         </NuxtLink>
 
         <p class="text-[#2D2D2D]/75 dark:text-[#D5C7B8] leading-relaxed max-w-md text-xs sm:text-sm">
@@ -26,9 +28,7 @@
             aria-label="Facebook"
             class="w-10 h-10 rounded-full bg-white dark:bg-[#221117] border border-[#C5A059]/35 text-[#4A1525] dark:text-[#C5A059] hover:bg-[#4A1525] hover:text-white dark:hover:bg-[#C5A059] dark:hover:text-[#140A0E] transition-all flex items-center justify-center shadow-sm"
           >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-            </svg>
+            <AppIcon name="facebook" class="w-4 h-4" />
           </a>
 
           <!-- Instagram -->
@@ -39,11 +39,7 @@
             aria-label="Instagram"
             class="w-10 h-10 rounded-full bg-white dark:bg-[#221117] border border-[#C5A059]/35 text-[#4A1525] dark:text-[#C5A059] hover:bg-[#4A1525] hover:text-white dark:hover:bg-[#C5A059] dark:hover:text-[#140A0E] transition-all flex items-center justify-center shadow-sm"
           >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-            </svg>
+            <AppIcon name="instagram" class="w-4 h-4" />
           </a>
 
           <!-- WhatsApp -->
@@ -54,9 +50,7 @@
             aria-label="WhatsApp"
             class="w-10 h-10 rounded-full bg-white dark:bg-[#221117] border border-[#C5A059]/35 text-[#4A1525] dark:text-[#C5A059] hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all flex items-center justify-center shadow-sm"
           >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-            </svg>
+            <AppIcon name="whatsapp" class="w-4 h-4" />
           </a>
 
           <!-- TikTok -->
@@ -67,9 +61,7 @@
             aria-label="TikTok"
             class="w-10 h-10 rounded-full bg-white dark:bg-[#221117] border border-[#C5A059]/35 text-[#4A1525] dark:text-[#C5A059] hover:bg-[#4A1525] hover:text-white dark:hover:bg-[#C5A059] dark:hover:text-[#140A0E] transition-all flex items-center justify-center shadow-sm"
           >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-            </svg>
+            <AppIcon name="tiktok" class="w-4 h-4" />
           </a>
         </div>
       </div>

@@ -12,6 +12,7 @@ export interface TemplateCatalogItem {
   accentColor: string
   defaultCoverImage: string
   defaultAudioUrl: string
+  bgVideo?: string
 }
 
 export const AUDIO_TRACK_URLS: Record<Exclude<MusicTrackChoice, 'templateDefault' | 'none'>, string> = {

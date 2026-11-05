@@ -530,29 +530,6 @@
                   </div>
                 </div>
 
-                <!-- Enable RSVP Checkbox Card -->
-                <div
-                  @click="form.enableRsvp = !form.enableRsvp"
-                  class="p-4 rounded-2xl bg-[#F9F6F0]/70 dark:bg-[#140A0E]/70 border border-[#C5A059]/25 flex items-center justify-between gap-4 cursor-pointer"
-                >
-                  <div>
-                    <h4 class="text-xs sm:text-sm font-bold text-[#2D2D2D] dark:text-[#F9F6F0]">{{ $t('builder.step2.enableRsvpTitle') }}</h4>
-                    <p class="text-[11px] text-[#2D2D2D]/65 dark:text-[#D5C7B8] mt-0.5">{{ $t('builder.step2.enableRsvpDesc') }}</p>
-                  </div>
-                  <div
-                    :class="[
-                      'w-6 h-6 rounded-lg flex items-center justify-center transition-colors shrink-0',
-                      form.enableRsvp
-                        ? 'bg-[#4A1525] dark:bg-[#C5A059] text-white dark:text-[#140A0E]'
-                        : 'border-2 border-[#C5A059]/40'
-                    ]"
-                  >
-                    <svg v-if="form.enableRsvp" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                </div>
-
                 <p v-if="errorMsg" class="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs font-semibold">
                   {{ errorMsg }}
                 </p>
@@ -1213,33 +1190,6 @@
                       :placeholder="$t('invite.guestNamePlaceholder')"
                       class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/50 text-[11px] focus:outline-none focus:border-[#C5A059]"
                     />
-
-                    <div class="grid grid-cols-2 gap-1.5">
-                      <button
-                        type="button"
-                        @click="previewRsvpAttending = true"
-                        :class="[
-                          'py-1.5 px-2 rounded-xl text-[10px] font-bold border transition',
-                          previewRsvpAttending
-                            ? 'bg-[#C5A059] text-[#140A0E] border-[#C5A059]'
-                            : 'bg-white/5 text-white/75 border-white/15'
-                        ]"
-                      >
-                        {{ $t('invite.attendingYes') }}
-                      </button>
-                      <button
-                        type="button"
-                        @click="previewRsvpAttending = false"
-                        :class="[
-                          'py-1.5 px-2 rounded-xl text-[10px] font-bold border transition',
-                          !previewRsvpAttending
-                            ? 'bg-[#C5A059] text-[#140A0E] border-[#C5A059]'
-                            : 'bg-white/5 text-white/75 border-white/15'
-                        ]"
-                      >
-                        {{ $t('invite.attendingNo') }}
-                      </button>
-                    </div>
 
                     <textarea
                       v-model="previewRsvpWish"

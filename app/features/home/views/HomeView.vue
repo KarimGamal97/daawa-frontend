@@ -44,9 +44,10 @@
           <!-- Templates Cards Grid (Matching Reference Card Layout) -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
             <div
-              v-for="item in displayedTemplates"
+              v-for="(item, idx) in displayedTemplates"
               :key="item.id"
-              class="group rounded-3xl overflow-hidden bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+              :style="{ transitionDelay: `${(idx % 3) * 120}ms` }"
+              class="reveal-on-scroll group rounded-3xl overflow-hidden bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm hover:shadow-xl flex flex-col"
             >
               <!-- Template Visual Preview Header -->
               <div
@@ -245,7 +246,7 @@
         </div>
 
         <!-- 3. All-in-One Features Grid -->
-        <section class="py-16 px-4 bg-[#F3EDE2]/70 dark:bg-[#1B0E13]">
+        <section id="features" class="py-16 px-4 bg-[#F3EDE2]/70 dark:bg-[#1B0E13]">
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
               <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] text-xs font-semibold">
@@ -258,12 +259,15 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              <div v-for="feat in features" :key="feat.icon" class="p-6 rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/15 shadow-sm text-center hover:border-[#C5A059]/50 transition-all">
+              <div
+                v-for="(feat, idx) in features"
+                :key="feat.icon"
+                :style="{ transitionDelay: `${(idx % 3) * 100}ms` }"
+                class="reveal-on-scroll p-6 rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/15 shadow-sm text-center hover:border-[#C5A059]/50 transition-all"
+              >
                 <div class="w-12 h-12 mx-auto mb-3 rounded-2xl bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] flex items-center justify-center">
-                  <svg v-if="feat.icon === 'rsvp'" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                    <path d="m9 14 2 2 4-4"/>
+                  <svg v-if="feat.icon === 'wishes' || feat.icon === 'rsvp'" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
                   </svg>
                   <svg v-else-if="feat.icon === 'map'" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
@@ -314,7 +318,8 @@
             <div
               v-for="(step, idx) in steps"
               :key="step.icon"
-              class="p-6 rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm flex items-center gap-5 hover:border-[#C5A059] transition-all"
+              :style="{ transitionDelay: `${idx * 120}ms` }"
+              class="reveal-on-scroll p-6 rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm flex items-center gap-5 hover:border-[#C5A059] transition-all"
             >
               <div class="w-14 h-14 rounded-2xl bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] flex items-center justify-center shrink-0">
                 <svg v-if="step.icon === 'template'" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -343,10 +348,10 @@
           </div>
         </section>
 
-        <!-- 5. Pricing Section (Single 999 EGP All-in-One Package) -->
+        <!-- 5. Pricing Section (999 EGP Smart Royal & 1500 EGP Bespoke VIP) -->
         <section id="pricing" class="py-20 px-4 bg-[#F3EDE2]/60 dark:bg-[#1B0E13]">
-          <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
               <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] text-xs font-semibold">
                 <svg class="w-3.5 h-3.5 text-[#C5A059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
@@ -354,51 +359,107 @@
                 <span>{{ $t('home.pricingSection.badge') }}</span>
               </span>
               <h2 class="text-3xl sm:text-4xl font-bold text-[#4A1525] dark:text-[#F9F6F0] mt-3">{{ $t('home.pricingSection.title') }}</h2>
-              <p class="text-sm text-[#2D2D2D]/70 dark:text-[#D5C7B8] mt-2">{{ $t('home.pricingSection.subtitle') }}</p>
+              <p class="text-sm text-[#2D2D2D]/70 dark:text-[#D5C7B8] mt-2 max-w-xl mx-auto leading-relaxed">{{ $t('home.pricingSection.subtitle') }}</p>
             </div>
 
-            <!-- Single All-in-One Package Card (999 EGP) -->
-            <div class="relative p-8 sm:p-10 rounded-3xl bg-white dark:bg-[#221117] border-2 border-[#C5A059] shadow-xl">
-              <span class="absolute -top-3.5 start-8 inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-[#C5A059] text-[#140A0E] text-xs font-bold shadow">
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-                <span>{{ $t('home.pricingSection.popularBadge') }}</span>
-              </span>
+            <!-- Two-Package Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              
+              <!-- Card 1: Standard Smart Royal Package (999 EGP) -->
+              <div class="reveal-on-scroll relative p-7 sm:p-9 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/30 shadow-md hover:shadow-xl transition-all flex flex-col justify-between">
+                <span class="absolute -top-3.5 start-8 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/50 text-[#8E6E37] dark:text-[#C5A059] text-xs font-bold shadow-sm">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  <span>{{ $t('home.pricingSection.standardPlan.badge') }}</span>
+                </span>
 
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#C5A059]/20">
                 <div>
-                  <h3 class="text-2xl font-bold text-[#4A1525] dark:text-[#F9F6F0]">{{ $t('home.pricingSection.planTitle') }}</h3>
-                  <p class="text-xs text-[#2D2D2D]/70 dark:text-[#D5C7B8] mt-1">{{ $t('home.pricingSection.subtitle') }}</p>
+                  <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-5 border-b border-[#C5A059]/20">
+                    <div>
+                      <h3 class="text-2xl font-bold text-[#4A1525] dark:text-[#F9F6F0]">{{ $t('home.pricingSection.standardPlan.title') }}</h3>
+                      <p class="text-xs text-[#2D2D2D]/70 dark:text-[#D5C7B8] mt-1.5 leading-relaxed">{{ $t('home.pricingSection.standardPlan.desc') }}</p>
+                    </div>
+                    <div class="flex items-baseline gap-1.5 shrink-0 mt-2 sm:mt-0">
+                      <span class="text-4xl sm:text-5xl font-extrabold text-[#C5A059]">{{ $t('home.pricingSection.standardPlan.price') }}</span>
+                      <span class="text-xs font-semibold opacity-75">{{ $t('home.pricingSection.standardPlan.currency') }}</span>
+                    </div>
+                  </div>
+
+                  <ul class="space-y-3.5 text-xs sm:text-sm text-[#2D2D2D]/85 dark:text-[#E5DEC9] my-7">
+                    <li v-for="item in standardPlanFeatures" :key="item" class="flex items-start gap-2.5">
+                      <svg class="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      <span>{{ item }}</span>
+                    </li>
+                  </ul>
                 </div>
-                <div class="flex items-baseline gap-1.5 shrink-0">
-                  <span class="text-5xl font-extrabold text-[#C5A059]">{{ $t('home.pricingSection.price') }}</span>
-                  <span class="text-xs font-semibold opacity-75">{{ $t('home.pricingSection.currencyPerInvite') }}</span>
-                </div>
+
+                <NuxtLink
+                  to="/create"
+                  class="w-full py-4 rounded-full bg-gradient-to-r from-[#4A1525] to-[#6B1F36] dark:from-[#C5A059] dark:to-[#A8843E] text-white dark:text-[#140A0E] font-bold text-sm shadow-md hover:opacity-95 transition-all inline-flex items-center justify-center gap-2 mt-4"
+                >
+                  <span>{{ $t('home.pricingSection.standardPlan.btnText') }}</span>
+                  <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </NuxtLink>
               </div>
 
-              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm text-[#2D2D2D]/85 dark:text-[#E5DEC9] my-8">
-                <li v-for="item in allPlanFeatures" :key="item" class="flex items-start gap-2.5">
-                  <svg class="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                  <span>{{ item }}</span>
-                </li>
-              </ul>
+              <!-- Card 2: Bespoke VIP Custom Package (1500 EGP) -->
+              <div style="transition-delay: 150ms;" class="reveal-on-scroll relative p-7 sm:p-9 rounded-3xl bg-gradient-to-b from-[#2D0C16] to-[#140A0E] text-white border-2 border-[#C5A059] shadow-2xl flex flex-col justify-between overflow-hidden">
+                <!-- Ambient luxury glow in corner -->
+                <div class="absolute -top-16 -end-16 w-44 h-44 bg-[#C5A059]/20 rounded-full blur-2xl pointer-events-none"></div>
 
-              <NuxtLink
-                to="/create"
-                class="w-full py-4 rounded-full bg-gradient-to-r from-[#4A1525] to-[#6B1F36] dark:from-[#C5A059] dark:to-[#A8843E] text-white dark:text-[#140A0E] font-bold text-sm shadow-lg hover:opacity-95 transition-all inline-flex items-center justify-center gap-2"
-              >
-                <span>{{ $t('home.pricingSection.choosePlan') }}</span>
-                <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </NuxtLink>
+                <span class="absolute -top-3.5 start-8 inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-gradient-to-r from-[#C5A059] to-[#E5C378] text-[#140A0E] text-xs font-extrabold shadow-lg">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
+                  </svg>
+                  <span>{{ $t('home.pricingSection.customPlan.badge') }}</span>
+                </span>
+
+                <div class="relative z-10">
+                  <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-5 border-b border-[#C5A059]/30">
+                    <div>
+                      <h3 class="text-2xl font-bold text-[#F9F6F0] flex items-center gap-2">
+                        <span>{{ $t('home.pricingSection.customPlan.title') }}</span>
+                      </h3>
+                      <p class="text-xs text-[#D5C7B8] mt-1.5 leading-relaxed">{{ $t('home.pricingSection.customPlan.desc') }}</p>
+                    </div>
+                    <div class="flex items-baseline gap-1.5 shrink-0 mt-2 sm:mt-0">
+                      <span class="text-4xl sm:text-5xl font-extrabold text-[#C5A059]">{{ $t('home.pricingSection.customPlan.price') }}</span>
+                      <span class="text-xs font-semibold text-[#D5C7B8]/80">{{ $t('home.pricingSection.customPlan.currency') }}</span>
+                    </div>
+                  </div>
+
+                  <ul class="space-y-3.5 text-xs sm:text-sm text-[#F9F6F0]/90 my-7">
+                    <li v-for="item in customPlanFeatures" :key="item" class="flex items-start gap-2.5">
+                      <div class="w-4 h-4 rounded-full bg-[#C5A059]/20 text-[#C5A059] flex items-center justify-center shrink-0 mt-0.5">
+                        <svg class="w-3 h-3 text-[#C5A059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                      </div>
+                      <span>{{ item }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <a
+                  :href="`https://wa.me/201094123678?text=${encodeURIComponent($t('home.pricingSection.customPlan.whatsappMsg'))}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="relative z-10 w-full py-4 rounded-full bg-gradient-to-r from-[#C5A059] via-[#E5C378] to-[#C5A059] text-[#140A0E] font-extrabold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.99] transition-all inline-flex items-center justify-center gap-2.5 mt-4"
+                >
+                  <AppIcon name="whatsapp" class="w-4 h-4 text-[#140A0E]" />
+                  <span>{{ $t('home.pricingSection.customPlan.btnText') }}</span>
+                </a>
+              </div>
+
             </div>
 
-            <!-- Concierge Box -->
-            <div class="mt-8 p-6 rounded-2xl bg-white/90 dark:bg-[#221117] border border-[#C5A059]/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Concierge Fast Notice -->
+            <div class="mt-10 p-6 rounded-2xl bg-white/90 dark:bg-[#221117] border border-[#C5A059]/25 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div class="flex items-start gap-3.5">
                 <div class="w-10 h-10 rounded-xl bg-[#C5A059]/15 text-[#C5A059] flex items-center justify-center shrink-0 mt-0.5">
                   <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -413,39 +474,75 @@
               </div>
               <div class="flex gap-2 shrink-0">
                 <a href="https://wa.me/201094123678" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition">
-                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                  </svg>
+                  <AppIcon name="whatsapp" class="w-3.5 h-3.5" />
                   <span>{{ $t('home.pricingSection.concierge.whatsapp') }}</span>
-                </a>
-                <a href="#contact" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#C5A059]/40 text-xs font-bold hover:border-[#C5A059] transition">
-                  <svg class="w-3.5 h-3.5 text-[#C5A059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                  </svg>
-                  <span>{{ $t('home.pricingSection.concierge.instagram') }}</span>
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- 6. FAQ Section -->
-        <section class="py-20 px-4 max-w-4xl mx-auto">
-          <h2 class="text-2xl sm:text-3xl font-bold text-center text-[#4A1525] dark:text-[#F9F6F0] mb-10">
-            {{ $t('home.faqSection.title') }}
-          </h2>
-          <div class="space-y-4">
-            <div v-for="faq in faqs" :key="faq.q" class="p-6 rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm">
-              <h3 class="font-bold text-sm sm:text-base text-[#4A1525] dark:text-[#C5A059] mb-2 flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#C5A059] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
-                </svg>
-                <span>{{ faq.q }}</span>
-              </h3>
-              <p class="text-xs sm:text-sm text-[#2D2D2D]/75 dark:text-[#D5C7B8] leading-relaxed ps-6">{{ faq.a }}</p>
+        <!-- 6. FAQ Section (Interactive Accordion) -->
+        <section id="faq" class="py-20 px-4 max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] text-xs font-semibold">
+              <svg class="w-3.5 h-3.5 text-[#C5A059]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+              </svg>
+              <span>{{ $t('home.faqSection.title') }}</span>
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-[#4A1525] dark:text-[#F9F6F0] mt-3">
+              {{ $t('home.faqSection.title') }}
+            </h2>
+          </div>
+
+          <div class="space-y-3.5">
+            <div 
+              v-for="(faq, idx) in faqs" 
+              :key="faq.q" 
+              :style="{ transitionDelay: `${idx * 80}ms` }"
+              class="reveal-on-scroll rounded-2xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm overflow-hidden hover:border-[#C5A059]/40"
+            >
+              <button
+                type="button"
+                @click="toggleFaq(idx)"
+                class="w-full p-5 sm:p-6 text-start flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+              >
+                <h3 class="font-bold text-sm sm:text-base text-[#4A1525] dark:text-[#F9F6F0] flex items-center gap-3">
+                  <span class="w-6 h-6 rounded-full bg-[#C5A059]/15 text-[#C5A059] flex items-center justify-center shrink-0 text-xs font-bold">
+                    {{ idx + 1 }}
+                  </span>
+                  <span>{{ faq.q }}</span>
+                </h3>
+
+                <div 
+                  :class="[
+                    'w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 shadow-sm',
+                    openFaq === idx 
+                      ? 'bg-[#4A1525] dark:bg-[#C5A059] text-white dark:text-[#140A0E] rotate-45' 
+                      : 'bg-[#C5A059]/15 text-[#C5A059] rotate-0'
+                  ]"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </div>
+              </button>
+
+              <!-- Smooth Accordion Transition -->
+              <Transition
+                @enter="onFaqEnter"
+                @after-enter="onFaqAfterEnter"
+                @leave="onFaqLeave"
+              >
+                <div v-show="openFaq === idx" class="overflow-hidden">
+                  <div class="px-5 pb-6 pt-1 sm:px-6 text-xs sm:text-sm text-[#2D2D2D]/75 dark:text-[#D5C7B8] leading-relaxed border-t border-[#C5A059]/15 pt-4 ps-14">
+                    {{ faq.a }}
+                  </div>
+                </div>
+              </Transition>
             </div>
           </div>
         </section>
@@ -466,35 +563,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Fast Support Card -->
-              <div class="p-8 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 flex flex-col justify-between">
+              <div class="reveal-on-scroll p-8 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                    </svg>
+                    <AppIcon name="whatsapp" class="w-6 h-6" />
                   </div>
                   <h3 class="text-xl font-bold text-[#4A1525] dark:text-[#F9F6F0] mb-2">{{ $t('home.contactSection.supportTitle') }}</h3>
                   <p class="text-xs text-[#2D2D2D]/70 dark:text-[#D5C7B8] leading-relaxed mb-4">
                     {{ $t('home.contactSection.supportDesc') }}
                   </p>
                   <p class="text-[11px] text-[#C5A059] mb-6 inline-flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <polyline points="12 6 12 12 16 14"/>
-                    </svg>
+                    <AppIcon name="clock" class="w-3.5 h-3.5" />
                     <span>{{ $t('home.contactSection.supportHours') }}</span>
                   </p>
                 </div>
                 <a href="https://wa.me/201094123678" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm text-center transition inline-flex items-center justify-center gap-2">
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                  </svg>
+                  <AppIcon name="whatsapp" class="w-4 h-4" />
                   <span>{{ $t('home.contactSection.supportBtn') }}</span>
                 </a>
               </div>
 
               <!-- Concierge Custom Design Card -->
-              <div class="p-8 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 flex flex-col justify-between">
+              <div style="transition-delay: 150ms;" class="reveal-on-scroll p-8 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-[#C5A059]/15 text-[#C5A059] flex items-center justify-center mb-4">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -526,7 +616,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import Navbar from '../components/Navbar.vue'
 import HeroSection from '../components/HeroSection.vue'
 import FooterSection from '../components/FooterSection.vue'
@@ -549,7 +639,7 @@ const displayedTemplates = computed(() => {
 })
 
 const features = computed(() => [
-  { icon: 'rsvp', title: t('home.featuresSection.items.rsvp.title'), desc: t('home.featuresSection.items.rsvp.desc') },
+  { icon: 'wishes', title: t('home.featuresSection.items.wishes.title'), desc: t('home.featuresSection.items.wishes.desc') },
   { icon: 'map', title: t('home.featuresSection.items.map.title'), desc: t('home.featuresSection.items.map.desc') },
   { icon: 'clock', title: t('home.featuresSection.items.clock.title'), desc: t('home.featuresSection.items.clock.desc') },
   { icon: 'image', title: t('home.featuresSection.items.image.title'), desc: t('home.featuresSection.items.image.desc') },
@@ -565,6 +655,8 @@ const steps = computed(() => [
 ])
 
 const allPlanFeatures = computed(() => getStringList('home.pricingSection.allFeatures'))
+const standardPlanFeatures = computed(() => getStringList('home.pricingSection.standardPlan.features'))
+const customPlanFeatures = computed(() => getStringList('home.pricingSection.customPlan.features'))
 
 const faqs = computed(() => [
   { q: t('home.faqSection.items.q1.q'), a: t('home.faqSection.items.q1.a') },
@@ -572,4 +664,78 @@ const faqs = computed(() => [
   { q: t('home.faqSection.items.q3.q'), a: t('home.faqSection.items.q3.a') },
   { q: t('home.faqSection.items.q4.q'), a: t('home.faqSection.items.q4.a') },
 ])
+
+const openFaq = ref<number | null>(0)
+const toggleFaq = (index: number) => {
+  openFaq.value = openFaq.value === index ? null : index
+}
+
+const onFaqEnter = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.transition = 'height 450ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms ease'
+  element.style.height = '0px'
+  element.style.opacity = '0'
+  void element.offsetHeight
+  element.style.height = `${element.scrollHeight}px`
+  element.style.opacity = '1'
+}
+
+const onFaqAfterEnter = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = 'auto'
+  element.style.transition = ''
+}
+
+const onFaqLeave = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.transition = 'height 350ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease'
+  element.style.height = `${element.scrollHeight}px`
+  element.style.opacity = '1'
+  void element.offsetHeight
+  element.style.height = '0px'
+  element.style.opacity = '0'
+}
+
+onMounted(() => {
+  if (import.meta.client) {
+    const initScrollReveal = () => {
+      if (typeof IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible')
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.05, rootMargin: '0px 0px 50px 0px' }
+        )
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el))
+      } else {
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => el.classList.add('is-visible'))
+      }
+    }
+
+    initScrollReveal()
+
+    // Safety fallback: guarantee that no elements remain hidden under any circumstances
+    setTimeout(() => {
+      document.querySelectorAll('.reveal-on-scroll').forEach((el) => el.classList.add('is-visible'))
+    }, 600)
+  }
+})
+
+// Re-reveal templates when switching category filter
+watch(selectedCategory, async () => {
+  await nextTick()
+  if (import.meta.client) {
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+      el.classList.remove('is-visible')
+      void (el as HTMLElement).offsetWidth
+      el.classList.add('is-visible')
+    })
+  }
+})
 </script>
