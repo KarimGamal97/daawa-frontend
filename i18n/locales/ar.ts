@@ -73,6 +73,12 @@ export default {
         birthdays: 'أعياد ميلاد ومناسبات',
       },
       items: {
+        ummKulthum: {
+          name: 'أم كلثوم — قصر محمد علي',
+          badge: 'طرب أصيل',
+          desc: 'تصميم ملكي أسطوري مستوحى من كوكب الشرق وقصر محمد علي بشبرا مع موسيقى كلاسيكية حية.',
+          tags: ['#أم_كلثوم', '#ملكي', '#قصر_محمد_علي'],
+        },
         royalNight: {
           name: 'رويال الملكي',
           badge: 'ملكي فاخر',
@@ -473,6 +479,8 @@ export default {
     },
   },
   invite: {
+    clickToOpen: 'اضغط لفتح الدعوة',
+    skip: 'تخطي',
     loading: 'جاري فتح الدعوة الملكية...',
     notFoundTitle: 'عذراً، لم يتم العثور على الدعوة',
     notFoundDesc: 'تأكد من صحة الرابط أو قم بإنشاء دعوة جديدة الآن.',
@@ -615,5 +623,16 @@ export default {
     emptyState: 'لا توجد طلبات مطابقة حالياً.',
     receiptModalTitle: 'صورة إيصال التحويل المرفقة',
     closeModalBtn: 'إغلاق',
+  },
+  templates: {
+    ummKulthum: {
+      families: 'TOGETHER WITH THEIR FAMILIES',
+      inviteYou: 'INVITE YOU TO JOIN THEIR FOREVER',
+      tapToListen: 'Tap to Listen',
+      listening: 'Playing...',
+      kindlyRsvp: 'KINDLY RSVP HERE',
+      clickForLocation: 'LOCATION',
+      leaveWishHint: 'اترك كلمة طيبة وتهنئة دافئة للعروسين في دفتر الذكريات',
+    },
   },
 }

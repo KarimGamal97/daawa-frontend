@@ -71,8 +71,51 @@ export const invitationsRepository = {
       upsertLocalOrder(remote)
       return remote
     } catch {
+      // Pre-filled Demo Template for Umm Kulthum
+      if (slug === 'umm-kulthum' || slug === 'demo') {
+        const demoItem: InvitationItem = {
+          _id: 'demo-umm-kulthum',
+          slug,
+          templateId: 'umm-kulthum',
+          eventType: 'wedding',
+          sealStyle: 'burgundy',
+          groomName: 'مصطفى ابوليله',
+          brideName: 'دنيا محرم',
+          weddingDate: '2027-01-12T19:00:00',
+          scratchReveal: false,
+          venue: 'قاعة بيرلا',
+          venueAddress: "Tanta - El Mahalla Road, Grand Babilon's First Gate",
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Perla+-%D8%A8%D9%8A%D8%B1%D9%84%D8%A7,+W479%2BWJ9,+Saft+Torab,+El+Mahalla+El+Kubra',
+          quoteType: 'custom',
+          customQuote: 'يا رب تفضل حلاوة سلام أول لقا بإيدينا',
+          tagline: 'AS MUSIC FILLS THE AIR AND OUR HEARTS BECOME ONE, WE INVITE YOU TO CELEBRATE THE BEGINNING OF OUR GREATEST ADVENTURE',
+          welcomeMessage: 'نتشرف بدعوتكم لحضور حفل زفافنا في ليلة طربية أصيلة لا تُنسى',
+          schedule: [],
+          enableRsvp: true,
+          musicTrack: 'templateDefault',
+          customMusicName: '/templates/umm-kulthum/audio/song.mp3',
+          photoUrl: '',
+          galleryPhotos: [],
+          totalPrice: 999,
+          status: 'active',
+          rsvps: [
+            {
+              guestName: 'أحمد و سلمى',
+              attending: true,
+              companionsCount: 2,
+              wishMessage: 'ألف مليون مبروك لأجمل عروسين! ربنا يسعدكم ويجعل أيامكم كلها بهجة وفرح.',
+              createdAt: new Date().toISOString(),
+            },
+          ],
+          createdAt: new Date().toISOString(),
+        }
+        upsertLocalOrder(demoItem)
+        return demoItem
+      }
+
       const local = readLocalOrders().find((i) => i.slug === slug)
-      return local || null
+      if (local) return local
+      return null
     }
   },
 

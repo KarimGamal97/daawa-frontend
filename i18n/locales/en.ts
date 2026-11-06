@@ -73,6 +73,12 @@ export default {
         birthdays: 'Birthdays & Events',
       },
       items: {
+        ummKulthum: {
+          name: 'Umm Kulthum — Royal Palace',
+          badge: 'Legendary Classic',
+          desc: 'A legendary royal design inspired by the Golden Age, Umm Kulthum, and Muhammad Ali Palace with live audio.',
+          tags: ['#UmmKulthum', '#Royal', '#HistoricPalace'],
+        },
         royalNight: {
           name: 'Royal Majesty',
           badge: 'Royal Luxury',
@@ -473,6 +479,8 @@ export default {
     },
   },
   invite: {
+    clickToOpen: 'Click to Open Invitation',
+    skip: 'Skip',
     loading: 'Opening Royal Invitation...',
     notFoundTitle: 'Invitation Not Found',
     notFoundDesc: 'Please check the link or create a new invitation now.',
@@ -615,5 +623,16 @@ export default {
     emptyState: 'No matching orders found.',
     receiptModalTitle: 'Uploaded Transfer Receipt',
     closeModalBtn: 'Close',
+  },
+  templates: {
+    ummKulthum: {
+      families: 'Together with their families',
+      inviteYou: 'Invite you to join their forever',
+      tapToListen: 'Tap to Listen',
+      listening: 'Playing...',
+      kindlyRsvp: 'Kindly RSVP Here',
+      clickForLocation: 'LOCATION',
+      leaveWishHint: 'Leave a warm wish for the couple in the guestbook',
+    },
   },
 }

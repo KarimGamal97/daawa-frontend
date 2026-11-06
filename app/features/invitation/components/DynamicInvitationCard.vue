@@ -1,5 +1,16 @@
 <template>
+  <!-- Bespoke / Custom Template (e.g. Umm Kulthum) -->
+  <component
+    :is="customTemplateComponent"
+    v-if="customTemplateComponent"
+    :invitation="invitation"
+    :template="currentTemplate"
+    @submit-rsvp="$emit('submit-rsvp', $event)"
+  />
+
+  <!-- Default Standard Template -->
   <div
+    v-else
     :class="[
       'min-h-screen py-10 sm:py-14 px-4 bg-gradient-to-b relative overflow-hidden text-center text-white select-none',
       currentTemplate.gradient,
@@ -310,6 +321,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useTemplatesCatalog, type TemplateCatalogItem } from '~/features/home/composables/useTemplatesCatalog'
+import { getCustomTemplateComponent } from './templates/templates.registry'
 import type { InvitationItem, CreateRsvpPayload } from '../types/invitation.types'
 
 interface Props {
@@ -335,6 +347,11 @@ const rsvpSubmitted = ref(false)
 const currentTemplate = computed<TemplateCatalogItem>(() => {
   if (props.template) return props.template
   return getTemplateById(props.invitation.templateId)
+})
+
+const customTemplateComponent = computed(() => {
+  const tId = props.invitation?.templateId || props.template?.id || currentTemplate.value?.id
+  return getCustomTemplateComponent(tId)
 })
 
 const displayPhotoUrl = computed<string>(() => {

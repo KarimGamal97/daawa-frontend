@@ -1,6 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.font-marcellus {
+  font-family: 'Marcellus', 'Cormorant Garamond', Georgia, serif !important;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif !important;
+}
+
+.font-amiri {
+  font-family: 'Amiri', 'Traditional Arabic', serif !important;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Garamond, serif !important;
+}
+
+.font-aref {
+  font-family: 'Aref Ruqaa', 'Amiri', serif !important;
+}
 
 @layer base {
   html,

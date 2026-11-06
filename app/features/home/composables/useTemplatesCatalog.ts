@@ -39,6 +39,18 @@ export const useTemplatesCatalog = () => {
 
   const templates = computed<TemplateCatalogItem[]>(() => [
     {
+      id: 'umm-kulthum',
+      category: 'weddings',
+      name: t('home.templatesSection.items.ummKulthum.name'),
+      badge: t('home.templatesSection.items.ummKulthum.badge'),
+      desc: t('home.templatesSection.items.ummKulthum.desc'),
+      tags: getStringList('home.templatesSection.items.ummKulthum.tags'),
+      gradient: 'from-[#4A1525] via-[#2A0812] to-[#140A0E]',
+      accentColor: '#C5A059',
+      defaultCoverImage: '/templates/umm-kulthum/cover.jpg',
+      defaultAudioUrl: '/templates/umm-kulthum/audio/song.mp3',
+    },
+    {
       id: 'royal-night',
       category: 'weddings',
       name: t('home.templatesSection.items.royalNight.name'),

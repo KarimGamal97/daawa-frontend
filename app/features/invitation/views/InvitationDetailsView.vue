@@ -33,7 +33,46 @@
       </div>
     </div>
 
-    <!-- Step A: Royal Wax-Seal Envelope Opening Screen -->
+    <!-- Step A (Option 1): Video Intro Screen (When template provides intro video) -->
+    <div
+      v-else-if="!isEnvelopeOpened && introVideoUrl"
+      class="fixed inset-0 z-50 overflow-hidden bg-[#10070A] flex flex-col items-center justify-end pb-12 sm:pb-16 px-4 text-center select-none"
+    >
+      <!-- Background Intro Video (Visible on frame 0, paused until user clicks) -->
+      <video
+        ref="introVideoRef"
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        :muted="isIntroMuted"
+        class="absolute inset-0 w-full h-full object-cover"
+        @ended="onIntroVideoEnded"
+      >
+        <source :src="introVideoSrc" type="video/mp4" />
+        <source src="/templates/umm-kulthum/audio/intro.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Bottom Dark Vignette Gradient (visible before video starts playing) -->
+      <div
+        v-if="!isIntroPlaying"
+        class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none transition-opacity duration-300"
+      ></div>
+
+      <!-- Chic "اضغط لفتح الدعوة" Button (shown before playing - without any dots) -->
+      <div v-if="!isIntroPlaying" class="relative z-10">
+        <button
+          type="button"
+          @click="playIntroVideo"
+          class="px-8 py-3.5 rounded-full bg-[#1A0A10]/85 hover:bg-[#2A0F1A] backdrop-blur-md border border-[#C5A059]/75 text-[#F4E3C7] shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center animate-pulse cursor-pointer"
+        >
+          <span class="font-aref text-lg sm:text-xl tracking-wider">
+            {{ $t('invite.clickToOpen') }}
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step A (Option 2): Royal Wax-Seal Envelope Opening Screen (for other templates) -->
     <div
       v-else-if="!isEnvelopeOpened"
       @click="openEnvelope"
@@ -78,18 +117,18 @@
 
     <!-- Step B: Full Scrollable Invitation Experience with Dynamic Template -->
     <div v-else class="relative">
-      <!-- Hidden Background Audio Element -->
+      <!-- Hidden Background Audio Element (for Standard Templates with MP3) -->
       <audio
-        v-if="activeAudioUrl"
+        v-if="!isCustomTemplate && activeAudioUrl && !activeAudioUrl.includes('soundcloud.com')"
         ref="audioRef"
         :src="activeAudioUrl"
         loop
         preload="auto"
       ></audio>
 
-      <!-- Floating Music Mute / Unmute Button -->
+      <!-- Floating Music Mute / Unmute Button (for Standard Templates) -->
       <button
-        v-if="activeAudioUrl"
+        v-if="!isCustomTemplate && activeAudioUrl && !activeAudioUrl.includes('soundcloud.com')"
         type="button"
         @click="toggleAudio"
         class="fixed top-5 end-5 z-40 w-11 h-11 rounded-full bg-black/50 backdrop-blur-md border border-[#C5A059]/50 text-[#C5A059] flex items-center justify-center shadow-lg hover:scale-105 transition"
@@ -121,6 +160,7 @@ import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { invitationsRepository } from '~/repositories/invitations.repository'
 import { useTemplatesCatalog } from '~/features/home/composables/useTemplatesCatalog'
+import { hasCustomTemplate } from '../components/templates/templates.registry'
 import DynamicInvitationCard from '../components/DynamicInvitationCard.vue'
 import type { InvitationItem, CreateRsvpPayload } from '../types/invitation.types'
 
@@ -186,11 +226,59 @@ const isAudioPlaying = ref(false)
 
 const currentTemplate = computed(() => getTemplateById(invitation.value?.templateId))
 
+const isCustomTemplate = computed(() => hasCustomTemplate(invitation.value?.templateId))
+
 const currentGradient = computed<string>(() => currentTemplate.value.gradient)
 
 const activeAudioUrl = computed<string | null>(() =>
   resolveAudioUrl(invitation.value?.templateId, invitation.value?.musicTrack)
 )
+
+const introVideoUrl = computed<string | null>(() => {
+  if (invitation.value?.templateId === 'umm-kulthum') {
+    return '/templates/umm-kulthum/intro.mp4'
+  }
+  return currentTemplate.value.bgVideo || null
+})
+
+const introVideoSrc = computed(() => {
+  if (!introVideoUrl.value) return ''
+  return `${introVideoUrl.value}#t=0.001`
+})
+
+const introVideoRef = ref<HTMLVideoElement | null>(null)
+const isIntroPlaying = ref(false)
+const isIntroMuted = ref(true)
+
+const playIntroVideo = async () => {
+  if (!introVideoRef.value) {
+    openEnvelope()
+    return
+  }
+
+  isIntroPlaying.value = true
+  const video = introVideoRef.value
+
+  try {
+    video.currentTime = 0
+    video.muted = false
+    isIntroMuted.value = false
+    await video.play()
+  } catch {
+    try {
+      video.muted = true
+      isIntroMuted.value = true
+      await video.play()
+    } catch (err) {
+      console.warn('Video playback failed, opening directly:', err)
+      openEnvelope()
+    }
+  }
+}
+
+const onIntroVideoEnded = () => {
+  openEnvelope()
+}
 
 const openingQuoteText = computed<string>(() => {
   if (!invitation.value) return ''
@@ -204,7 +292,7 @@ const openingQuoteText = computed<string>(() => {
 const openEnvelope = async () => {
   isEnvelopeOpened.value = true
   await nextTick()
-  if (audioRef.value && activeAudioUrl.value) {
+  if (!isCustomTemplate.value && audioRef.value && activeAudioUrl.value && !activeAudioUrl.value.includes('soundcloud.com')) {
     try {
       await audioRef.value.play()
       isAudioPlaying.value = true
