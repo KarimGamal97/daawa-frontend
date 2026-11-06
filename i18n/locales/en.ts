@@ -628,6 +628,7 @@ export default {
     ummKulthum: {
       families: 'Together with their families',
       inviteYou: 'Invite you to join their forever',
+      clickToOpen: 'اضغط لفتح الدعوة',
       tapToListen: 'Tap to Listen',
       listening: 'Playing...',
       kindlyRsvp: 'Kindly RSVP Here',

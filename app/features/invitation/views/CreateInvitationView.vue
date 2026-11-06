@@ -302,7 +302,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.groomLabel') }}</label>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.groomLabel') }}</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 1 (الرئيسية)</span>
+                    </label>
                     <input
                       v-model="form.groomName"
                       required
@@ -312,7 +315,10 @@
                     />
                   </div>
                   <div>
-                    <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.brideLabel') }}</label>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.brideLabel') }}</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 1 (الرئيسية)</span>
+                    </label>
                     <input
                       v-model="form.brideName"
                       required
@@ -325,7 +331,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.dateLabel') }}</label>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.dateLabel') }}</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 2 + العداد</span>
+                    </label>
                     <input
                       v-model="form.weddingDate"
                       required
@@ -391,7 +400,10 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.venueLabel') }}</label>
+                  <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                    <span>{{ $t('builder.step2.venueLabel') }}</span>
+                    <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">أعلى البطاقة 3</span>
+                  </label>
                   <input
                     v-model="form.venue"
                     required
@@ -403,7 +415,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.addressLabel') }}</label>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.addressLabel') }}</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 3 (بين العيدان)</span>
+                    </label>
                     <input
                       v-model="form.venueAddress"
                       type="text"
@@ -412,7 +427,10 @@
                     />
                   </div>
                   <div>
-                    <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.mapLabel') }}</label>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.mapLabel') }}</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">زر LOCATION في البطاقة 3</span>
+                    </label>
                     <input
                       v-model="form.mapUrl"
                       type="url"
@@ -452,6 +470,10 @@
                   </div>
 
                   <div v-if="form.quoteType === 'custom'" class="mt-3">
+                    <label v-if="form.templateId === 'umm-kulthum'" class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>{{ $t('builder.step2.customQuotePlaceholder') }}</span>
+                      <span class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">أعلى الأسماء (البطاقة الأولى)</span>
+                    </label>
                     <input
                       v-model="form.customQuote"
                       type="text"
@@ -474,7 +496,10 @@
 
                 <!-- Signature Tagline -->
                 <div>
-                  <label class="block text-xs font-bold mb-1.5">{{ $t('builder.step2.taglineLabel') }}</label>
+                  <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                    <span>{{ $t('builder.step2.taglineLabel') }}</span>
+                    <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">أسفل الأسماء (البطاقة الأولى)</span>
+                  </label>
                   <input
                     v-model="form.tagline"
                     type="text"
@@ -700,8 +725,22 @@
                 </div>
               </div>
 
-              <!-- 4. Royal Wax Seal Color -->
-              <div class="pt-4 border-t border-[#C5A059]/15">
+              <!-- 4. Royal Wax Seal Color (Or Intro Video Notice for Umm Kulthum) -->
+              <div v-if="form.templateId === 'umm-kulthum'" class="pt-4 border-t border-[#C5A059]/15">
+                <div class="p-4 rounded-2xl bg-[#C5A059]/10 border border-[#C5A059]/30 text-xs">
+                  <p class="font-bold text-[#4A1525] dark:text-[#C5A059] flex items-center gap-2">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="23 7 16 12 23 17 23 7"/>
+                      <rect width="15" height="14" x="1" y="5" rx="2" ry="2"/>
+                    </svg>
+                    <span>واجهة أم كلثوم: فيديو إنترو سينمائي مخصص</span>
+                  </p>
+                  <p class="text-[11px] text-[#2D2D2D]/75 dark:text-[#D5C7B8] mt-1 leading-relaxed">
+                    بدلاً من الختم الشمعي التقليدي، يتميز قالب أم كلثوم بمقطع فيديو إنترو فاخر مع زر أنيق لفتح الدعوة.
+                  </p>
+                </div>
+              </div>
+              <div v-else class="pt-4 border-t border-[#C5A059]/15">
                 <label class="block text-xs font-bold mb-2.5">{{ $t('builder.step3.sealLabel') }}</label>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <button
@@ -960,7 +999,7 @@
                     : 'text-[#2D2D2D]/70 dark:text-[#D5C7B8]'
                 ]"
               >
-                {{ $t('builder.step3.envelopePreviewBtn') }}
+                {{ form.templateId === 'umm-kulthum' ? 'فيديو الإنترو' : $t('builder.step3.envelopePreviewBtn') }}
               </button>
               <button
                 type="button"
@@ -972,15 +1011,56 @@
                     : 'text-[#2D2D2D]/70 dark:text-[#D5C7B8]'
                 ]"
               >
-                {{ $t('builder.step3.cardPreviewBtn') }}
+                {{ form.templateId === 'umm-kulthum' ? 'كروت الدعوة' : $t('builder.step3.cardPreviewBtn') }}
               </button>
             </div>
 
             <!-- Realistic iPhone 16 Pro Frame -->
             <IphoneFrame>
-              <!-- Mode A: Royal Wax-Seal Envelope -->
-              <div
-                v-if="previewMode === 'envelope'"
+              <!-- SPECIAL LIVE PREVIEW FOR UMM KULTHUM TEMPLATE -->
+              <template v-if="form.templateId === 'umm-kulthum'">
+                <!-- Mode A (Umm Kulthum): Video Intro Screen -->
+                <div
+                  v-if="previewMode === 'envelope'"
+                  @click="previewMode = 'card'"
+                  class="relative h-[550px] flex flex-col items-center justify-end pb-10 px-4 text-center select-none bg-[#10070A] overflow-hidden cursor-pointer"
+                >
+                  <video
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    webkit-playsinline
+                    class="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src="/templates/umm-kulthum/audio/intro.mp4" type="video/mp4" />
+                  </video>
+                  <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/90 via-black/45 to-transparent pointer-events-none"></div>
+                  <div class="relative z-10 space-y-2">
+                    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-[#C5A059]/40 text-[#F9F6F0] text-xs font-bold shadow-lg">
+                      <span>{{ $t('templates.ummKulthum.clickToOpen') || 'اضغط لفتح الدعوة' }}</span>
+                    </div>
+                    <p class="text-[10px] text-white/70">اضغط لمعاينة كروت الدعوة الثلاثة</p>
+                  </div>
+                </div>
+
+                <!-- Mode B (Umm Kulthum): 3 Royal Golden Vintage Cards -->
+                <div
+                  v-else
+                  class="w-full [transform:translateZ(0)]"
+                >
+                  <UmmKulthumTemplate
+                    :invitation="liveUmmKulthumInvitation"
+                    :template="activeTemplate"
+                  />
+                </div>
+              </template>
+
+              <!-- DEFAULT PREVIEW FOR OTHER CLASSIC TEMPLATES -->
+              <template v-else>
+                <!-- Mode A: Royal Wax-Seal Envelope -->
+                <div
+                  v-if="previewMode === 'envelope'"
                 @click="previewMode = 'card'"
                 :class="['min-h-[476px] p-6 relative overflow-hidden cursor-pointer flex flex-col items-center justify-between text-center bg-gradient-to-b', activeTemplate.gradient]"
               >
@@ -1217,7 +1297,8 @@
                   {{ $t('invite.poweredBy') }}
                 </div>
               </div>
-            </IphoneFrame>
+            </template>
+          </IphoneFrame>
           </div>
         </div>
       </main>
@@ -1231,8 +1312,9 @@
 import { ref, computed } from 'vue'
 import Navbar from '~/features/home/components/Navbar.vue'
 import FooterSection from '~/features/home/components/FooterSection.vue'
+import UmmKulthumTemplate from '~/features/invitation/components/templates/UmmKulthumTemplate.vue'
 import { useInvitationBuilder } from '../composables/useInvitationBuilder'
-import type { OccasionEventType, QuoteSelectionType, MusicTrackChoice } from '../types/invitation.types'
+import type { OccasionEventType, QuoteSelectionType, MusicTrackChoice, InvitationItem } from '../types/invitation.types'
 
 const { t } = useI18n()
 const isDark = useState<boolean>('daawa-dark-mode', () => false)
@@ -1284,6 +1366,34 @@ const {
   goToStep,
   submitInvitation,
 } = useInvitationBuilder()
+
+const liveUmmKulthumInvitation = computed<InvitationItem>(() => ({
+  _id: 'live-preview-umm-kulthum',
+  slug: form.slug || 'preview',
+  templateId: 'umm-kulthum',
+  eventType: form.eventType || 'wedding',
+  sealStyle: form.sealStyle || 'burgundy',
+  groomName: form.groomName || 'مصطفى ابوليله',
+  brideName: form.brideName || 'دنيا محرم',
+  weddingDate: form.weddingDate || '2027-01-12T19:00:00',
+  scratchReveal: form.scratchReveal,
+  venue: form.venue || 'قاعة بيرلا',
+  venueAddress: form.venueAddress || "Tanta - El Mahalla Road, Grand Babilon's First Gate",
+  mapUrl: form.mapUrl || 'https://www.google.com/maps/search/?api=1&query=Perla+-%D8%A8%D9%8A%D8%B1%D9%84%D8%A7,+W479%2BWJ9,+Saft+Torab,+El+Mahalla+El+Kubra',
+  quoteType: form.quoteType || 'custom',
+  customQuote: form.customQuote || 'يا رب تفضل حلاوة سلام أول لقا بإيدينا',
+  welcomeMessage: form.welcomeMessage || 'نتشرف بدعوتكم لحضور حفل زفافنا في ليلة طربية أصيلة لا تُنسى',
+  tagline: form.tagline || 'AS MUSIC FILLS THE AIR AND OUR HEARTS BECOME ONE, WE INVITE YOU TO CELEBRATE THE BEGINNING OF OUR GREATEST ADVENTURE',
+  schedule: form.schedule || [],
+  enableRsvp: form.enableRsvp,
+  musicTrack: form.musicTrack || 'templateDefault',
+  customMusicName: form.customMusicName || '/templates/umm-kulthum/audio/song.mp3',
+  photoUrl: form.photoUrl || '',
+  galleryPhotos: form.galleryPhotos || [],
+  totalPrice: finalTotalPrice.value,
+  status: 'active',
+  rsvps: [],
+}))
 
 const stepTabs = computed(() => [
   { num: 1, label: t('builder.steps.s1') },

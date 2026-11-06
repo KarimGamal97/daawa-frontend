@@ -52,13 +52,13 @@
         <div
           dir="ltr"
           class="absolute inset-x-0 z-10 flex items-center justify-center"
-          style="top: 22.5%;"
+          style="top: 24.5%;"
         >
-          <div class="relative w-[22%] aspect-square text-[#531524] select-none">
-            <span class="absolute inset-0 flex items-center justify-center font-marcellus font-light leading-none text-[clamp(44px,15cqi,68px)] -translate-x-[6%]">
+          <div class="relative w-[19%] aspect-square text-[#531524] select-none">
+            <span class="absolute inset-0 flex items-center justify-center font-marcellus font-light leading-none text-[clamp(36px,12cqi,52px)] -translate-x-[6%]">
               {{ monogramFirst }}
             </span>
-            <span class="absolute inset-0 flex items-center justify-center font-marcellus font-light leading-none text-[clamp(44px,15cqi,68px)] translate-x-[6%] mix-blend-multiply">
+            <span class="absolute inset-0 flex items-center justify-center font-marcellus font-light leading-none text-[clamp(36px,12cqi,52px)] translate-x-[6%] mix-blend-multiply">
               {{ monogramSecond }}
             </span>
           </div>
@@ -68,61 +68,59 @@
         <div
           dir="ltr"
           class="absolute inset-x-0 z-10 text-center"
-          style="top: 33.2%;"
+          style="top: 34.2%;"
         >
-          <p class="font-marcellus text-[clamp(7.5px,2.3cqi,10px)] tracking-[0.12em] uppercase text-[#3B1420]">
+          <p class="font-marcellus text-[clamp(6.5px,2cqi,8.5px)] tracking-[0.14em] uppercase text-[#3B1420]">
             {{ $t('templates.ummKulthum.families') }}
           </p>
         </div>
 
-        <!-- 3. Groom & Bride Names side by side -->
+        <!-- 3. Groom & Bride Names on one unified horizontal level -->
         <div
           class="absolute inset-x-0 z-10 flex items-center justify-center gap-3 text-center px-4"
-          style="top: 36.2%;"
+          style="top: 37.2%;"
         >
-          <div
+          <span
             :class="[
-              'text-[#3B1420] leading-tight',
+              'text-[#3B1420] leading-none whitespace-nowrap',
               isArabicNames
-                ? 'font-aref font-bold text-[clamp(13px,4cqi,18px)] tracking-normal'
-                : 'font-marcellus uppercase tracking-[0.1em] text-[clamp(10px,3.2cqi,14px)]'
+                ? 'font-aref font-bold text-[clamp(13px,3.8cqi,17px)] tracking-normal'
+                : 'font-marcellus uppercase tracking-[0.08em] text-[clamp(9.5px,3cqi,13px)]'
             ]"
           >
-            <span class="block">{{ groomNameParts.first }}</span>
-            <span class="block">{{ groomNameParts.rest }}</span>
-          </div>
+            {{ groomDisplayName }}
+          </span>
 
           <span
             :class="[
-              'text-[#3B1420] leading-none',
+              'text-[#3B1420] leading-none shrink-0 self-center',
               isArabicNames
-                ? 'font-aref font-bold text-[clamp(18px,5cqi,24px)]'
-                : 'font-marcellus text-[clamp(16px,5cqi,22px)]'
+                ? 'font-aref font-bold text-[clamp(15px,4.4cqi,20px)]'
+                : 'font-marcellus text-[clamp(13px,3.8cqi,18px)]'
             ]"
           >
             &amp;
           </span>
 
-          <div
+          <span
             :class="[
-              'text-[#3B1420] leading-tight',
+              'text-[#3B1420] leading-none whitespace-nowrap',
               isArabicNames
-                ? 'font-aref font-bold text-[clamp(13px,4cqi,18px)] tracking-normal'
-                : 'font-marcellus uppercase tracking-[0.1em] text-[clamp(10px,3.2cqi,14px)]'
+                ? 'font-aref font-bold text-[clamp(13px,3.8cqi,17px)] tracking-normal'
+                : 'font-marcellus uppercase tracking-[0.08em] text-[clamp(9.5px,3cqi,13px)]'
             ]"
           >
-            <span class="block">{{ brideNameParts.first }}</span>
-            <span class="block">{{ brideNameParts.rest }}</span>
-          </div>
+            {{ brideDisplayName }}
+          </span>
         </div>
 
         <!-- 4. "INVITE YOU TO JOIN THEIR FOREVER" -->
         <div
           dir="ltr"
           class="absolute inset-x-0 z-10 text-center"
-          style="top: 43.6%;"
+          style="top: 41.8%;"
         >
-          <p class="font-marcellus text-[clamp(7px,2.2cqi,9.5px)] tracking-[0.1em] uppercase text-[#3B1420]">
+          <p class="font-marcellus text-[clamp(6.5px,1.9cqi,8px)] tracking-[0.12em] uppercase text-[#3B1420]">
             {{ $t('templates.ummKulthum.inviteYou') }}
           </p>
         </div>
@@ -131,9 +129,9 @@
         <div
           dir="ltr"
           class="absolute inset-x-0 z-10 flex flex-col items-center"
-          style="top: 46.6%;"
+          style="top: 45%;"
         >
-          <div class="flex items-center justify-center gap-1.5 font-marcellus text-[clamp(20px,6.4cqi,28px)] tracking-[0.04em] text-[#3B1420] tabular-nums">
+          <div class="flex items-center justify-center gap-1.5 font-marcellus text-[clamp(15px,4.5cqi,20px)] tracking-[0.06em] text-[#3B1420] tabular-nums font-semibold">
             <span>{{ countdown.days }}</span>
             <span>:</span>
             <span>{{ countdown.hours }}</span>
@@ -142,7 +140,7 @@
             <span>:</span>
             <span>{{ countdown.seconds }}</span>
           </div>
-          <div class="grid grid-cols-4 gap-4 font-marcellus text-[clamp(5.5px,1.6cqi,7px)] tracking-[0.18em] text-[#6B2435] uppercase mt-0.5 text-center">
+          <div class="grid grid-cols-4 gap-3 font-marcellus text-[clamp(5px,1.4cqi,6.5px)] tracking-[0.16em] text-[#6B2435] uppercase mt-0.5 text-center">
             <span>DAYS</span>
             <span>HOURS</span>
             <span>MINUTES</span>
@@ -172,11 +170,16 @@
           </p>
         </div>
 
-        <!-- English Romantic Verse (wide, evenly spaced, 5 lines) -->
-        <div class="absolute z-10 text-center" style="top: 45.4%; left: 11%; right: 11%;">
+        <!-- Tagline / Secondary Verse (wide, generously sized, fills the arch gracefully) -->
+        <div class="absolute z-10 text-center" style="top: 41.5%; left: 7%; right: 7%;">
           <p
-            dir="ltr"
-            class="font-marcellus uppercase text-[#E8C9AE] leading-[1.5] tracking-[0.03em] text-[min(4.9vw,21px)]"
+            :dir="isArabic(englishPoemLine) ? 'rtl' : 'ltr'"
+            :class="[
+              'text-[#E8C9AE]',
+              isArabic(englishPoemLine)
+                ? 'font-aref text-[clamp(16px,5.2cqi,22px)] font-bold leading-[2.5] tracking-normal'
+                : 'font-marcellus uppercase tracking-[0.08em] text-[clamp(13px,4.2cqi,18.5px)] leading-[2.3]'
+            ]"
           >
             {{ englishPoemLine }}
           </p>
@@ -206,14 +209,14 @@
         <!-- 1. Venue Title (PERLA HALL / قاعة بيرلا) -->
         <div
           class="absolute inset-x-8 z-10 text-center flex flex-col items-center"
-          style="top: 27.2%;"
+          style="top: 25.8%;"
         >
           <h3
             :class="[
               'text-[#531524] leading-tight font-bold',
               isArabicVenue
-                ? 'font-aref text-[clamp(15px,4.8cqi,20px)] tracking-normal'
-                : 'font-cinzel text-[clamp(11px,3.6cqi,15px)] tracking-[0.18em] uppercase'
+                ? 'font-aref text-[clamp(14px,4.3cqi,18px)] tracking-normal'
+                : 'font-cinzel text-[clamp(10px,3.2cqi,13.5px)] tracking-[0.16em] uppercase'
             ]"
           >
             {{ venueTitle }}
@@ -221,41 +224,41 @@
           <div
             v-if="venueSubtitle"
             :class="[
-              'text-[#6B2435] mt-1 font-semibold leading-snug max-w-[80%] mx-auto',
+              'text-[#6B2435] mt-1 font-semibold leading-tight max-w-[76%] mx-auto',
               isArabic(venueSubtitle)
-                ? 'font-aref text-[clamp(11px,3.2cqi,14px)] tracking-normal'
-                : 'font-cinzel text-[clamp(7.5px,2.2cqi,9.5px)] tracking-[0.14em] uppercase'
+                ? 'font-aref text-[clamp(10px,2.8cqi,12.5px)] tracking-normal'
+                : 'font-cinzel text-[clamp(6.8px,1.9cqi,8.5px)] tracking-[0.12em] uppercase'
             ]"
           >
             <span class="block">{{ venueSubtitleParts.line1 }}</span>
-            <span v-if="venueSubtitleParts.line2" class="block">{{ venueSubtitleParts.line2 }}</span>
+            <span v-if="venueSubtitleParts.line2" class="block mt-0.5">{{ venueSubtitleParts.line2 }}</span>
           </div>
         </div>
 
-        <!-- 2. Location Button ("LOCATION") over Dark Pill -->
+        <!-- 2. Location Button ("LOCATION") exactly inside the Red Pill, No Hover Effect -->
         <div
           class="absolute inset-x-0 z-20 flex justify-center"
-          style="top: 34.2%; height: 3.8%;"
+          style="top: 34.5%; height: 2.8%;"
         >
           <a
             :href="mapUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-[48%] h-full flex items-center justify-center font-cinzel font-semibold text-[min(2.7vw,11px)] tracking-[0.22em] uppercase text-[#F9F6F0] rounded-full hover:scale-105 active:scale-95 transition px-2"
+            class="w-[46%] h-full flex items-center justify-center font-cinzel font-bold text-[min(2.5vw,10.5px)] tracking-[0.22em] uppercase text-[#F9F6F0] rounded-full cursor-pointer px-2"
           >
-            <span>{{ $t('templates.ummKulthum.clickForLocation') }}</span>
+            <span class="inline-flex items-center justify-center leading-none">{{ $t('templates.ummKulthum.clickForLocation') }}</span>
           </a>
         </div>
 
         <!-- 3. Wedding Date ("16TH SEPTEMBER 2026 / WEDNESDAY") below Calendar Icon -->
         <div
-          class="absolute inset-x-8 z-10 text-center"
-          style="top: 46.8%;"
+          class="absolute inset-x-12 z-10 text-center"
+          style="top: 47%;"
         >
-          <p class="font-cinzel font-bold text-[clamp(10px,3.2cqi,13.5px)] tracking-[0.18em] uppercase text-[#531524]">
+          <p class="font-cinzel font-bold text-[clamp(8.5px,2.5cqi,11px)] tracking-[0.08em] uppercase text-[#531524]">
             {{ weddingDateFormatted }}
           </p>
-          <p class="font-cinzel text-[clamp(8px,2.6cqi,10.5px)] font-semibold tracking-[0.22em] uppercase text-[#6B2435] mt-0.5">
+          <p class="font-cinzel text-[clamp(7px,2cqi,9px)] font-semibold tracking-[0.12em] uppercase text-[#6B2435] mt-0.5">
             {{ weddingDayName }}
           </p>
         </div>
@@ -398,15 +401,41 @@ const venueSubtitle = computed(() => {
 })
 
 const venueSubtitleParts = computed(() => {
-  const raw = venueSubtitle.value || ''
-  if (raw.includes(',')) {
-    const [line1, ...rest] = raw.split(',')
-    return { line1: line1.trim(), line2: rest.join(',').trim() }
+  const raw = (venueSubtitle.value || '').trim()
+  if (!raw) return { line1: '', line2: '' }
+
+  // 1. Explicit line break
+  if (raw.includes('\n')) {
+    const [l1, ...rest] = raw.split('\n')
+    return { line1: l1.trim(), line2: rest.join(' ').trim() }
   }
-  if (raw.includes('—')) {
-    const [line1, ...rest] = raw.split('—')
-    return { line1: line1.trim(), line2: rest.join('—').trim() }
+  // 2. Comma or Arabic comma
+  if (raw.includes(',') || raw.includes('،')) {
+    const sep = raw.includes(',') ? ',' : '،'
+    const [l1, ...rest] = raw.split(sep)
+    return { line1: l1.trim(), line2: rest.join(sep).trim() }
   }
+  // 3. Em-dash or En-dash
+  if (raw.includes('—') || raw.includes('–')) {
+    const sep = raw.includes('—') ? '—' : '–'
+    const [l1, ...rest] = raw.split(sep)
+    return { line1: l1.trim(), line2: rest.join(' ').trim() }
+  }
+  // 4. Hyphen surrounded by spaces: " - "
+  if (/\s+-\s+/.test(raw)) {
+    const parts = raw.split(/\s+-\s+/)
+    return { line1: parts[0].trim(), line2: parts.slice(1).join(' - ').trim() }
+  }
+  // 5. Automatic balancing into two equal lines if longer than 26 chars
+  if (raw.length > 26 && raw.includes(' ')) {
+    const words = raw.split(/\s+/)
+    const mid = Math.ceil(words.length / 2)
+    return {
+      line1: words.slice(0, mid).join(' '),
+      line2: words.slice(mid).join(' '),
+    }
+  }
+
   return { line1: raw, line2: '' }
 })
 
