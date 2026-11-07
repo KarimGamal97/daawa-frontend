@@ -263,14 +263,14 @@
           </p>
         </div>
 
-        <!-- 4. Wedding Time ("STARTS AT" / "7:00PM") below Pocket Watch Icon -->
+        <!-- 4. Wedding Time ("STARTS AT" / Dynamic Time) below Pocket Watch Icon -->
         <div
           class="absolute inset-x-8 z-10 text-center"
           style="top: 65.5%;"
         >
           <p class="font-cinzel font-semibold text-[min(2.9vw,11.5px)] tracking-[0.14em] uppercase text-[#531524] leading-snug">
             <span class="block">STARTS AT</span>
-            <span class="block">7:00PM</span>
+            <span class="block">{{ weddingStartTime }}</span>
           </p>
         </div>
       </section>
@@ -453,11 +453,10 @@ const targetDate = computed(() => {
 const weddingDateFormatted = computed(() => {
   const d = targetDate.value
   const day = d.getDate()
-  const suffix = day === 1 || day === 21 || day === 31 ? 'ST' : day === 2 || day === 22 ? 'ND' : day === 3 || day === 23 ? 'RD' : 'TH'
   const monthNames = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
   const month = monthNames[d.getMonth()]
   const year = d.getFullYear()
-  return `${day}${suffix} ${month} ${year}`
+  return `${day} ${month} ${year}`
 })
 
 const weddingDayName = computed(() => {
@@ -466,7 +465,14 @@ const weddingDayName = computed(() => {
 })
 
 const weddingStartTime = computed(() => {
-  return 'STARTS AT 7:00PM'
+  const d = targetDate.value
+  let hours = d.getHours()
+  const minutes = d.getMinutes()
+  const ampm = hours >= 12 ? 'PM' : 'AM'
+  hours = hours % 12
+  hours = hours ? hours : 12
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : String(minutes)
+  return `${hours}:${formattedMinutes}${ampm}`
 })
 
 // Live Countdown Timer

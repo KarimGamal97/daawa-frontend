@@ -333,7 +333,7 @@
                   <div>
                     <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
                       <span>{{ $t('builder.step2.dateLabel') }}</span>
-                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 2 + العداد</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">البطاقة 3 + العداد</span>
                     </label>
                     <input
                       v-model="form.weddingDate"
