@@ -22,6 +22,44 @@ export const useInvitationBuilder = () => {
     { id: 's3', time: t('builder.step2.defaultSchedule.t3Time'), title: t('builder.step2.defaultSchedule.t3Title') },
   ]
 
+  const getDefaultLoveStory = () => [
+    {
+      id: 'ls-1',
+      date: '2022',
+      title: 'First Meeting',
+      description: 'Two souls found each other — a glance that changed everything forever.',
+      icon: 'meeting',
+    },
+    {
+      id: 'ls-2',
+      date: 'April 3, 2025',
+      title: 'Reading of the Fatiha',
+      description: 'Our families came together and blessed the beginning of our journey.',
+      icon: 'fatiha',
+    },
+    {
+      id: 'ls-3',
+      date: 'May 10, 2025',
+      title: 'The Engagement',
+      description: 'Surrounded by love and family, we celebrated our engagement.',
+      icon: 'engagement',
+    },
+    {
+      id: 'ls-4',
+      date: 'September 3, 2026',
+      title: 'Katb El Ketab',
+      description: 'The day we officially became husband and wife.',
+      icon: 'katbKetab',
+    },
+    {
+      id: 'ls-5',
+      date: 'November 21, 2026',
+      title: 'The Wedding',
+      description: 'And now, we invite you to witness the most beautiful chapter of our story.',
+      icon: 'wedding',
+    },
+  ]
+
   const form = reactive<CreateInvitationPayload>({
     slug: '',
     groomName: '',
@@ -36,6 +74,9 @@ export const useInvitationBuilder = () => {
     welcomeMessage: t('builder.step2.defaultWelcome'),
     tagline: t('builder.step2.defaultTagline'),
     schedule: getDefaultSchedule(),
+    enableLoveStory: true,
+    loveStoryTitle: 'Our Love Story',
+    loveStory: getDefaultLoveStory(),
     enableRsvp: true,
     templateId: typeof route.query.template === 'string' ? route.query.template : 'royal-night',
     eventType: 'wedding',
@@ -197,6 +238,22 @@ export const useInvitationBuilder = () => {
     form.schedule = form.schedule.filter((item) => item.id !== id)
   }
 
+  const addLoveStoryMilestone = () => {
+    form.loveStory = form.loveStory || []
+    form.loveStory.push({
+      id: `ls-${Date.now()}`,
+      date: '2026',
+      title: 'New Chapter',
+      description: 'A special moment in our journey.',
+      icon: 'meeting',
+    })
+  }
+
+  const removeLoveStoryMilestone = (id: string) => {
+    if (!form.loveStory) return
+    form.loveStory = form.loveStory.filter((item) => item.id !== id)
+  }
+
   const handleCoverPhotoUpload = (event: Event) => {
     const input = event.target as HTMLInputElement
     const file = input.files?.[0]
@@ -340,6 +397,9 @@ export const useInvitationBuilder = () => {
         welcomeMessage: form.welcomeMessage,
         tagline: form.tagline,
         schedule: form.schedule,
+        enableLoveStory: form.enableLoveStory,
+        loveStoryTitle: form.loveStoryTitle,
+        loveStory: form.loveStory,
         enableRsvp: form.enableRsvp,
         templateId: form.templateId,
         eventType: form.eventType,
@@ -396,6 +456,8 @@ export const useInvitationBuilder = () => {
     applyDiscountCode,
     addScheduleRow,
     removeScheduleRow,
+    addLoveStoryMilestone,
+    removeLoveStoryMilestone,
     handleCoverPhotoUpload,
     handleGalleryUpload,
     removeGalleryPhoto,

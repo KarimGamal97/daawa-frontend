@@ -34,6 +34,14 @@ export interface CelebrationScheduleItem {
   title: string
 }
 
+export interface LoveStoryMilestone {
+  id: string
+  date: string
+  title: string
+  description: string
+  icon?: 'meeting' | 'fatiha' | 'engagement' | 'katbKetab' | 'wedding' | string
+}
+
 export interface InvitationItem {
   _id: string
   slug: string
@@ -52,6 +60,9 @@ export interface InvitationItem {
   welcomeMessage?: string
   tagline?: string
   schedule?: CelebrationScheduleItem[]
+  enableLoveStory?: boolean
+  loveStoryTitle?: string
+  loveStory?: LoveStoryMilestone[]
   enableRsvp?: boolean
   musicTrack?: MusicTrackChoice
   customMusicName?: string
@@ -86,6 +97,9 @@ export interface CreateInvitationPayload {
   welcomeMessage?: string
   tagline?: string
   schedule?: CelebrationScheduleItem[]
+  enableLoveStory?: boolean
+  loveStoryTitle?: string
+  loveStory?: LoveStoryMilestone[]
   enableRsvp?: boolean
   templateId?: string
   eventType?: OccasionEventType

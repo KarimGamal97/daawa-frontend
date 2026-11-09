@@ -197,6 +197,123 @@
       </section>
 
       <!-- ======================================================== -->
+      <!-- SECTION: OUR LOVE STORY TIMELINE (كارت قصة حبنا)         -->
+      <!-- ======================================================== -->
+      <section
+        v-if="showLoveStory"
+        class="relative w-full overflow-hidden select-none"
+        style="aspect-ratio: 572 / 1024;"
+      >
+        <!-- Background: Authentic Parchment with Columns & Corner Lilies from temp_3.jpg -->
+        <img
+          src="/templates/umm-kulthum/card-story-bg.jpg"
+          alt="Our Love Story Background"
+          class="w-full h-full object-cover select-none pointer-events-none"
+        />
+
+        <!-- Section Content Overlay (Between the Left and Right Columns) -->
+        <div class="absolute inset-y-0 inset-x-12 sm:inset-x-14 z-10 flex flex-col justify-between py-8 sm:py-10">
+          <!-- 1. Header: "Our Love Story" in Royal Burgundy & Gold -->
+          <div class="text-center pt-1">
+            <div class="flex items-center justify-center gap-3 mb-1.5">
+              <span class="w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-[#8E6E37]"></span>
+              <span class="text-[#8E6E37] text-xs">✦</span>
+              <span class="w-10 sm:w-16 h-[1px] bg-gradient-to-l from-transparent via-[#C5A059] to-[#8E6E37]"></span>
+            </div>
+
+            <h3
+              :class="[
+                'font-extrabold text-[#531524] tracking-[0.18em] uppercase drop-shadow-sm',
+                isArabicLoveStory
+                  ? 'font-aref text-[clamp(20px,5.5cqi,26px)]'
+                  : 'font-cinzel text-[clamp(16px,4.8cqi,22px)]'
+              ]"
+            >
+              {{ loveStoryTitle }}
+            </h3>
+
+            <div class="flex items-center justify-center gap-2 mt-1.5">
+              <span class="w-8 sm:w-12 h-[1px] bg-[#C5A059]/60"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#531524]"></span>
+              <span class="w-8 sm:w-12 h-[1px] bg-[#C5A059]/60"></span>
+            </div>
+          </div>
+
+          <!-- 2. Vertical Timeline (Strict Direction Awareness for RTL/LTR) -->
+          <div
+            :dir="isArabicLoveStory ? 'rtl' : 'ltr'"
+            class="relative my-auto py-2"
+          >
+            <!-- Golden Connecting Line -->
+            <div
+              class="absolute top-3 bottom-5 start-3.5 sm:start-4 w-[2px] bg-gradient-to-b from-[#C5A059]/40 via-[#C5A059] to-[#C5A059]/40 pointer-events-none"
+            ></div>
+
+            <div class="space-y-4 sm:space-y-5 relative">
+              <div
+                v-for="item in loveStoryMilestones"
+                :key="item.id"
+                class="flex items-start gap-3 sm:gap-4 group"
+              >
+                <!-- Circular Milestone Badge (Royal Burgundy + Gold Border) -->
+                <div
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#531524] border-2 border-[#C5A059] shadow-[0_2px_8px_rgba(83,21,36,0.35)] flex items-center justify-center shrink-0 z-10 text-[11px] sm:text-xs text-[#F5EFE6] select-none"
+                >
+                  <span v-if="item.icon === 'meeting'">💫</span>
+                  <span v-else-if="item.icon === 'fatiha'">🤲</span>
+                  <span v-else-if="item.icon === 'engagement'">💍</span>
+                  <span v-else-if="item.icon === 'katbKetab'">📜</span>
+                  <span v-else-if="item.icon === 'wedding'">👑</span>
+                  <span v-else class="text-[#C5A059] font-bold text-[10px]">✦</span>
+                </div>
+
+                <!-- Milestone Details in Rich Burgundy / Mahogany -->
+                <div
+                  class="flex-1 pt-0.5"
+                  :class="isArabicLoveStory ? 'text-right' : 'text-left'"
+                >
+                  <p
+                    :class="[
+                      'font-bold text-[#8A3347] uppercase tracking-[0.14em]',
+                      isArabic(item.date)
+                        ? 'font-aref text-[clamp(10px,2.5cqi,12px)]'
+                        : 'font-cinzel text-[clamp(8.5px,2.2cqi,10.5px)]'
+                    ]"
+                  >
+                    {{ item.date }}
+                  </p>
+                  <h4
+                    :class="[
+                      'font-extrabold text-[#531524] tracking-wide mt-0.5 leading-snug',
+                      isArabic(item.title)
+                        ? 'font-aref text-[clamp(13px,3.5cqi,16px)]'
+                        : 'font-cinzel text-[clamp(11.5px,3cqi,14.5px)]'
+                    ]"
+                  >
+                    {{ item.title }}
+                  </h4>
+                  <p
+                    v-if="item.description"
+                    :class="[
+                      'text-[#5C2534] mt-0.5 leading-relaxed font-normal',
+                      isArabic(item.description)
+                        ? 'font-amiri text-[clamp(10.5px,2.6cqi,12.5px)]'
+                        : 'font-marcellus text-[clamp(8.5px,2.1cqi,10.5px)] tracking-normal'
+                    ]"
+                  >
+                    {{ item.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom subtle spacing to balance layout with corner flowers -->
+          <div class="h-2 sm:h-3"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
       <!-- SECTION 3: VENUE, DATE & PALACE (temp_3.jpg)             -->
       <!-- ======================================================== -->
       <section class="relative w-full overflow-hidden" style="aspect-ratio: 572 / 1024;">
@@ -275,13 +392,29 @@
         </div>
       </section>
 
+      <!-- Floating Audio Toggle Button (like in the reference screenshot) -->
+      <button
+        type="button"
+        @click="toggleAudio"
+        aria-label="Toggle Wedding Music"
+        class="fixed bottom-5 end-5 z-40 w-11 h-11 rounded-full bg-[#3D0C1A]/90 hover:bg-[#521323] backdrop-blur-md border border-[#D4B475]/60 text-[#F4E3C7] flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition cursor-pointer"
+      >
+        <svg v-if="isPlaying" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <rect x="6" y="4" width="4" height="16" rx="1" />
+          <rect x="14" y="4" width="4" height="16" rx="1" />
+        </svg>
+        <svg v-else class="w-4 h-4 fill-current ms-0.5" viewBox="0 0 24 24">
+          <polygon points="5 3 19 12 5 21 5 3" />
+        </svg>
+      </button>
+
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import type { InvitationItem, CreateRsvpPayload } from '~/features/invitation/types/invitation.types'
+import type { InvitationItem, CreateRsvpPayload, LoveStoryMilestone } from '~/features/invitation/types/invitation.types'
 import type { TemplateCatalogItem } from '~/features/home/composables/useTemplatesCatalog'
 
 interface Props {
@@ -473,6 +606,102 @@ const weddingStartTime = computed(() => {
   hours = hours ? hours : 12
   const formattedMinutes = minutes < 10 ? `0${minutes}` : String(minutes)
   return `${hours}:${formattedMinutes}${ampm}`
+})
+
+// Our Love Story Timeline
+const showLoveStory = computed(() => {
+  return props.invitation.enableLoveStory !== false
+})
+
+const loveStoryTitle = computed(() => {
+  return props.invitation.loveStoryTitle || 'Our Love Story'
+})
+
+const isArabicLoveStory = computed(() => {
+  return isArabic(loveStoryTitle.value)
+})
+
+const loveStoryMilestones = computed<LoveStoryMilestone[]>(() => {
+  if (props.invitation.loveStory && props.invitation.loveStory.length > 0) {
+    return props.invitation.loveStory
+  }
+  if (isArabic(loveStoryTitle.value)) {
+    return [
+      {
+        id: 'ls-1',
+        date: '2022',
+        title: 'أول لقاء',
+        description: 'التقت القلوب بنظرة واحدة غيرت مجرى كل شيء إلى الأبد.',
+        icon: 'meeting',
+      },
+      {
+        id: 'ls-2',
+        date: '3 أبريل 2025',
+        title: 'قراءة الفاتحة',
+        description: 'اجتمعت عائلاتنا على الخير وباركت بداية عهدنا وخطواتنا الأولى.',
+        icon: 'fatiha',
+      },
+      {
+        id: 'ls-3',
+        date: '10 مايو 2025',
+        title: 'الخطوبة المباركة',
+        description: 'وسط فرحة الأهل والأحباب، لبسنا دبل الخطوبة وتلاقت أمانينا.',
+        icon: 'engagement',
+      },
+      {
+        id: 'ls-4',
+        date: '3 سبتمبر 2026',
+        title: 'عقد القران',
+        description: 'اليوم الذي جمعنا الله فيه على سنة رسوله وأصبحنا زوجين رسمياً.',
+        icon: 'katbKetab',
+      },
+      {
+        id: 'ls-5',
+        date: weddingDateFormatted.value || '21 يناير 2027',
+        title: 'ليلة العمر',
+        description: 'والآن، ندعوكم لتشاركونا الاحتفال بأجمل وأبهى فصول حكايتنا.',
+        icon: 'wedding',
+      },
+    ]
+  }
+
+  return [
+    {
+      id: 'ls-1',
+      date: '2022',
+      title: 'First Meeting',
+      description: 'Two souls found each other — a glance that changed everything forever.',
+      icon: 'meeting',
+    },
+    {
+      id: 'ls-2',
+      date: 'April 3, 2025',
+      title: 'Reading of the Fatiha',
+      description: 'Our families came together and blessed the beginning of our journey.',
+      icon: 'fatiha',
+    },
+    {
+      id: 'ls-3',
+      date: 'May 10, 2025',
+      title: 'The Engagement',
+      description: 'Surrounded by love and family, we celebrated our engagement.',
+      icon: 'engagement',
+    },
+    {
+      id: 'ls-4',
+      date: 'September 3, 2026',
+      title: 'Katb El Ketab',
+      description: 'The day we officially became husband and wife.',
+      icon: 'katbKetab',
+    },
+    {
+      id: 'ls-5',
+      date: weddingDateFormatted.value || 'November 21, 2026',
+      title: 'The Wedding',
+      description: 'And now, we invite you to witness the most beautiful chapter of our story.',
+      icon: 'wedding',
+    },
+  ]
 })
 
 // Live Countdown Timer

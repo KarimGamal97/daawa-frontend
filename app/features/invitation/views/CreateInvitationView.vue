@@ -442,10 +442,104 @@
                 </div>
               </div>
 
-              <!-- Card 2C: Quote, Welcome Note, Tagline, Schedule Timeline & RSVP -->
+              <!-- Card 2C: Our Love Story Timeline Builder (خاصة بتمبلت أم كلثوم والقصص الرومانسية) -->
+              <div class="p-5 sm:p-7 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm space-y-5">
+                <div class="flex items-center justify-between border-b border-[#C5A059]/15 pb-3">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-7 h-7 rounded-lg bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] flex items-center justify-center text-xs font-extrabold">3</span>
+                    <div>
+                      <h2 class="text-base sm:text-lg font-bold text-[#4A1525] dark:text-[#F9F6F0]">قسم قصة حبنا (Our Love Story)</h2>
+                      <p class="text-[11px] text-[#2D2D2D]/60 dark:text-[#D5C7B8]/70 mt-0.5">جدول زمني رومانسي يستعرض محطات قصة حب العروسين</p>
+                    </div>
+                  </div>
+                  <!-- Custom Toggle Switch -->
+                  <button
+                    type="button"
+                    @click="form.enableLoveStory = !form.enableLoveStory"
+                    :class="[
+                      'w-12 h-6 rounded-full p-1 transition-colors shrink-0 flex items-center cursor-pointer',
+                      form.enableLoveStory ? 'bg-[#4A1525] dark:bg-[#C5A059] justify-end' : 'bg-gray-300 dark:bg-gray-700 justify-start'
+                    ]"
+                  >
+                    <span class="w-4 h-4 rounded-full bg-white dark:bg-[#140A0E] shadow"></span>
+                  </button>
+                </div>
+
+                <div v-if="form.enableLoveStory !== false" class="space-y-4 pt-1">
+                  <div>
+                    <label class="block text-xs font-bold mb-1.5 flex items-center justify-between">
+                      <span>عنوان القسم</span>
+                      <span v-if="form.templateId === 'umm-kulthum'" class="text-[10px] font-semibold text-[#8E6E37] dark:text-[#C5A059] bg-[#C5A059]/15 px-2 py-0.5 rounded-full">كارت قصة حبنا</span>
+                    </label>
+                    <input
+                      v-model="form.loveStoryTitle"
+                      type="text"
+                      placeholder="Our Love Story أو قصة حبنا"
+                      class="w-full px-4 py-3 rounded-2xl bg-[#F9F6F0] dark:bg-[#140A0E] border border-[#C5A059]/25 text-sm focus:outline-none focus:border-[#C5A059]"
+                    />
+                  </div>
+
+                  <div class="pt-2 border-t border-[#C5A059]/15">
+                    <div class="flex items-center justify-between mb-3">
+                      <label class="text-xs font-bold text-[#4A1525] dark:text-[#C5A059]">
+                        محطات القصة (Milestones)
+                      </label>
+                      <button
+                        type="button"
+                        @click="addLoveStoryMilestone"
+                        class="text-xs font-bold text-[#8E6E37] dark:text-[#C5A059] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>+ إضافة محطة جديدة</span>
+                      </button>
+                    </div>
+
+                    <div class="space-y-3">
+                      <div
+                        v-for="item in form.loveStory"
+                        :key="item.id"
+                        class="p-4 rounded-2xl bg-[#F9F6F0]/80 dark:bg-[#140A0E]/80 border border-[#C5A059]/25 space-y-2.5"
+                      >
+                        <div class="flex items-center justify-between gap-2">
+                          <div class="grid grid-cols-2 gap-2 flex-1">
+                            <input
+                              v-model="item.date"
+                              type="text"
+                              placeholder="السنة أو التاريخ (مثلاً 2022)"
+                              class="px-3 py-2 rounded-xl bg-white dark:bg-[#221117] border border-[#C5A059]/30 text-xs font-bold focus:outline-none focus:border-[#C5A059]"
+                            />
+                            <input
+                              v-model="item.title"
+                              type="text"
+                              placeholder="عنوان المحطة (مثلاً First Meeting)"
+                              class="px-3 py-2 rounded-xl bg-white dark:bg-[#221117] border border-[#C5A059]/30 text-xs font-bold focus:outline-none focus:border-[#C5A059]"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            @click="removeLoveStoryMilestone(item.id)"
+                            class="w-8 h-8 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 flex items-center justify-center shrink-0 transition"
+                          >
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                            </svg>
+                          </button>
+                        </div>
+                        <textarea
+                          v-model="item.description"
+                          rows="2"
+                          placeholder="الوصف الرومانسي أو الجملة المعبرة..."
+                          class="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#221117] border border-[#C5A059]/30 text-xs focus:outline-none focus:border-[#C5A059]"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2D: Quote, Welcome Note, Tagline, Schedule Timeline & RSVP -->
               <div class="p-5 sm:p-7 rounded-3xl bg-white dark:bg-[#221117] border border-[#C5A059]/20 shadow-sm space-y-5">
                 <div class="flex items-center gap-2.5 border-b border-[#C5A059]/15 pb-3">
-                  <span class="w-7 h-7 rounded-lg bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] flex items-center justify-center text-xs font-extrabold">3</span>
+                  <span class="w-7 h-7 rounded-lg bg-[#C5A059]/15 text-[#4A1525] dark:text-[#C5A059] flex items-center justify-center text-xs font-extrabold">4</span>
                   <h2 class="text-base sm:text-lg font-bold text-[#4A1525] dark:text-[#F9F6F0]">{{ $t('builder.step2.sectionContent') }}</h2>
                 </div>
 
@@ -1358,6 +1452,8 @@ const {
   applyDiscountCode,
   addScheduleRow,
   removeScheduleRow,
+  addLoveStoryMilestone,
+  removeLoveStoryMilestone,
   handleCoverPhotoUpload,
   handleGalleryUpload,
   removeGalleryPhoto,
@@ -1385,6 +1481,9 @@ const liveUmmKulthumInvitation = computed<InvitationItem>(() => ({
   welcomeMessage: form.welcomeMessage || 'نتشرف بدعوتكم لحضور حفل زفافنا في ليلة طربية أصيلة لا تُنسى',
   tagline: form.tagline || 'AS MUSIC FILLS THE AIR AND OUR HEARTS BECOME ONE, WE INVITE YOU TO CELEBRATE THE BEGINNING OF OUR GREATEST ADVENTURE',
   schedule: form.schedule || [],
+  enableLoveStory: form.enableLoveStory ?? true,
+  loveStoryTitle: form.loveStoryTitle || 'Our Love Story',
+  loveStory: form.loveStory,
   enableRsvp: form.enableRsvp,
   musicTrack: form.musicTrack || 'templateDefault',
   customMusicName: form.customMusicName || '/templates/umm-kulthum/audio/song.mp3',
