@@ -216,6 +216,24 @@ export const invitationsRepository = {
     }
   },
 
+  async update(slug: string, payload: Partial<CreateInvitationPayload>): Promise<InvitationItem | null> {
+    try {
+      const updated = await $fetch<InvitationItem>(`${API_BASE_URL}/${slug}`, {
+        method: 'PUT',
+        body: payload,
+      })
+      upsertLocalOrder(updated)
+      return updated
+    } catch {
+      const list = readLocalOrders()
+      const target = list.find((i) => i.slug === slug)
+      if (!target) return null
+      Object.assign(target, payload)
+      writeLocalOrders(list)
+      return target
+    }
+  },
+
   async updateStatus(slug: string, status: InvitationOrderStatus): Promise<InvitationItem | null> {
     try {
       const updated = await $fetch<InvitationItem>(`${API_BASE_URL}/${slug}/status`, {

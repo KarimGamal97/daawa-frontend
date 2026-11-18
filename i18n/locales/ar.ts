@@ -613,6 +613,7 @@ export default {
       viewReceiptBtn: 'عرض صورة التحويل',
       noReceipt: 'بدون صورة إيصال',
       previewInviteBtn: 'معاينة الدعوة',
+      editInviteBtn: 'تعديل الدعوة',
       approveBtn: 'تفعيل الدعوة',
       rejectBtn: 'رفض',
       whatsappSendBtn: 'إرسال اللينك واتساب',

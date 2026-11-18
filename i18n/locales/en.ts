@@ -613,6 +613,7 @@ export default {
       viewReceiptBtn: 'View Receipt Image',
       noReceipt: 'No Receipt Image',
       previewInviteBtn: 'Preview Link',
+      editInviteBtn: 'Edit Invitation',
       approveBtn: 'Activate Now',
       rejectBtn: 'Reject',
       whatsappSendBtn: 'Send via WhatsApp',

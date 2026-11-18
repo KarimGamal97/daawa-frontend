@@ -216,6 +216,14 @@
                 {{ $t('admin.card.previewInviteBtn') }}
               </NuxtLink>
 
+              <!-- Edit Link -->
+              <NuxtLink
+                :to="`/create?edit=${order.slug}`"
+                class="px-3.5 py-2 rounded-xl bg-[#C5A059]/15 border border-[#C5A059]/40 text-[#4A1525] dark:text-[#C5A059] text-xs font-bold hover:bg-[#C5A059]/25 transition"
+              >
+                {{ $t('admin.card.editInviteBtn') }}
+              </NuxtLink>
+
               <!-- Approve Button -->
               <button
                 v-if="order.status !== 'active'"

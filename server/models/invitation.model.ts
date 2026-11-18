@@ -6,6 +6,14 @@ export interface IInvitationSchedule {
   title: string
 }
 
+export interface ILoveStoryMilestone {
+  id: string
+  date: string
+  title: string
+  description?: string
+  icon?: string
+}
+
 export interface IInvitationRsvp {
   guestName: string
   attending?: boolean
@@ -31,6 +39,9 @@ export interface IInvitation extends Document {
   welcomeMessage: string
   tagline: string
   schedule: IInvitationSchedule[]
+  enableLoveStory?: boolean
+  loveStoryTitle?: string
+  loveStory?: ILoveStoryMilestone[]
   enableRsvp: boolean
   musicTrack: string
   customMusicName: string
@@ -72,6 +83,17 @@ const InvitationSchema = new Schema<IInvitation>(
         id: { type: String, required: true },
         time: { type: String, required: true },
         title: { type: String, required: true },
+      },
+    ],
+    enableLoveStory: { type: Boolean, default: true },
+    loveStoryTitle: { type: String, default: 'Our Love Story' },
+    loveStory: [
+      {
+        id: { type: String, required: true },
+        date: { type: String, required: true },
+        title: { type: String, required: true },
+        description: { type: String, default: '' },
+        icon: { type: String, default: 'meeting' },
       },
     ],
     enableRsvp: { type: Boolean, default: true },

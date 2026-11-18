@@ -111,6 +111,16 @@ export const useInvitationBuilder = () => {
     if (typeof route.query.template === 'string') {
       form.templateId = route.query.template
     }
+    const editSlug = typeof route.query.edit === 'string' ? route.query.edit : null
+    if (editSlug) {
+      invitationsRepository.fetchBySlug(editSlug).then((inv) => {
+        if (inv) {
+          Object.assign(form, inv)
+          if (inv.templateId) form.templateId = inv.templateId
+          currentStep.value = 2
+        }
+      })
+    }
   })
 
   watch(
@@ -370,11 +380,16 @@ export const useInvitationBuilder = () => {
       errorMsg.value = t('builder.errorMissingStep2')
       return
     }
+    const editSlug = typeof route.query.edit === 'string' ? route.query.edit : null
+
     if (
-      !form.customerName?.trim() ||
-      !form.customerPhone?.trim() ||
-      !form.paymentReference?.trim() ||
-      !form.receiptFileName?.trim()
+      !editSlug &&
+      (
+        !form.customerName?.trim() ||
+        !form.customerPhone?.trim() ||
+        !form.paymentReference?.trim() ||
+        !form.receiptFileName?.trim()
+      )
     ) {
       errorMsg.value = t('builder.errorMissingPayment')
       return
@@ -382,6 +397,37 @@ export const useInvitationBuilder = () => {
 
     isLoading.value = true
     try {
+      if (editSlug) {
+        await invitationsRepository.update(editSlug, {
+          groomName: form.groomName,
+          brideName: form.brideName,
+          weddingDate: form.weddingDate,
+          scratchReveal: form.scratchReveal,
+          venue: form.venue,
+          venueAddress: form.venueAddress,
+          mapUrl: form.mapUrl,
+          quoteType: form.quoteType,
+          customQuote: form.customQuote,
+          welcomeMessage: form.welcomeMessage,
+          tagline: form.tagline,
+          schedule: form.schedule,
+          enableLoveStory: form.enableLoveStory,
+          loveStoryTitle: form.loveStoryTitle,
+          loveStory: form.loveStory,
+          enableRsvp: form.enableRsvp,
+          templateId: form.templateId,
+          eventType: form.eventType,
+          sealStyle: form.sealStyle,
+          musicTrack: form.musicTrack,
+          customMusicName: form.customMusicName,
+          photoUrl: form.photoUrl,
+          galleryPhotos: form.galleryPhotos,
+        })
+        createdSlug.value = editSlug
+        orderSuccess.value = true
+        return
+      }
+
       const cleanSlug = generateCleanSlug()
       const res = await invitationsRepository.create({
         slug: cleanSlug,
